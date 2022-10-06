@@ -51,9 +51,9 @@ case $1 in
                 echo "Anvil: 🦾 🏗  helper for running a dockerized smith"
                 echo "Config file: $COMPOSE"
                 echo "Usage: expected a parameter (alias) like:"
-                echo "  ./anvil up (start)"
-                echo "  ./anvil ssh (enter) (exec) (run)"
-                echo "  ./anvil status (ps)" 
-                echo "  ./anvil stop (halt) (destroy) (down)"
+                echo "  anvil up (start)"
+                echo "  anvil ssh (enter) (exec) (run)"
+                echo "  anvil status (ps)"
+                echo "  anvil stop (halt) (destroy) (down)"
                 ;;
 esac
