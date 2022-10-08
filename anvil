@@ -8,6 +8,7 @@
 OS=$(uname -sm)
 COMPOSE="$HOME/repos/anvil/docker-compose.yml"
 
+
 case $1 in
         "validate" | "check" | "config")
                 echo "Validating configuration"
@@ -27,13 +28,10 @@ case $1 in
                 ;;
         "ssh" | "enter" | "exec" | "run")
                 echo "Entering the container in interactive mode (type exit to get back)"
-                if [[ "$OS" == *"MSYS_NT-10"* ]]; 
-                        then winpty docker compose -f "$COMPOSE" run smith 
-                        else docker compose -f "$COMPOSE" run smith 
-                fi
+                docker compose -f "$COMPOSE" run smith
                 ;;
         "when" | "time")
-                echo -e "ID              Creation date                   Status"
+                echo "ID              Creation date                   Status"
                 docker container ls --format '{{.ID}}\t{{.CreatedAt}}\t{{.State}}\t{{.Status}}'
                 ;;
         "stop" | "halt" | "destroy" | "down")
@@ -48,6 +46,9 @@ case $1 in
                 docker system prune -a
                 ;;
         *)
+                if [[ "$OS" == *"MSYS_NT-10"* ]];
+                    then echo "Windows users: see equivalent batch file"
+                fi
                 echo "Anvil: 🦾 🏗  helper for running a dockerized smith"
                 echo "Config file: $COMPOSE"
                 echo "Usage: expected a parameter (alias) like:"
