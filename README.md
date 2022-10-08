@@ -26,9 +26,14 @@ cat bash_completion_anvil >> ~/.bash_completion
 ### Windows users
 There is an equivalent batch file for Windows users (although bash is now installable, bash scripts have to be prefixed with sh to run from a particular folder).
 
+```
+mkdir -p ~/bin
+cp anvil ~/bin/anvil
+```
+
 to add the batchfile to your PATH type:
 ```
-setx PATH "%PATH%;C:\Users\username\repos\anvil"
+setx PATH "%PATH%;C:\Users\username\bin"
 ```
 
 Adjust the *docker-compose.yml* file to your liking.
