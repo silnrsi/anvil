@@ -34,7 +34,7 @@ case $1 in
                 echo "ID              Creation date                   Status"
                 docker container ls --format '{{.ID}}\t{{.CreatedAt}}\t{{.State}}\t{{.Status}}'
                 ;;
-        "stop" | "halt" | "destroy" | "down")
+        "down" | "halt" | "destroy" | "stop")
                 echo "Stopping and removing the container"
                 docker compose -f "$COMPOSE" down
                 ;;
@@ -55,6 +55,6 @@ case $1 in
                 echo "  anvil up (start)"
                 echo "  anvil ssh (enter) (exec) (run)"
                 echo "  anvil status (ps)"
-                echo "  anvil stop (halt) (destroy) (down)"
+                echo "  anvil down (halt) (destroy) (stop)"
                 ;;
 esac
