@@ -2,13 +2,14 @@
 version: "3.9"
 services:
   smith:
-    restart: always
-    image: wstech/smith:latest
+    restart: unless-stopped
+    image: "ghcr.io/silnrsi/smith:latest"
     stdin_open: true
     tty: true
     volumes:
       # adjust to your own local font project folder structure
       # source on your host OS : target inside the container
+      # (syntax details on https://docs.docker.com/compose/compose-file/#volumes)
       - $HOME/repos/wstechfonts:/smith
     container_name: smith
     hostname: smith-focal
