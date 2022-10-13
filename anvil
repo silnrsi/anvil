@@ -28,7 +28,7 @@ case $1 in
                 ;;
         "ssh" | "enter" | "exec" | "run")
                 echo "Entering the container in interactive mode (type exit to get back)"
-                docker compose -f "$COMPOSE" run smith
+                docker compose -f "$COMPOSE" exec smith bash
                 ;;
         "when" | "time")
                 echo "ID              Creation date                   Status"
