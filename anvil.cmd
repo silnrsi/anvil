@@ -11,7 +11,7 @@ set COMPOSE="%USERPROFILE%\repos\anvil\docker-compose.yml"
 if "%1" == "" (
     echo Anvil: # # helper for running a dockerized smith
     echo Config file %COMPOSE%
-    echo Usage: expected a parameter
+    echo Usage: expected a parameter like:
     echo   anvil up
     echo   anvil ssh
     echo   anvil status
@@ -29,8 +29,8 @@ if "%1" == "" (
     echo Showing container status
     docker compose -f %COMPOSE% ps
 ) else if "%1" == "ssh" (
-    echo Entering the container in interactive mode type exit to get back
-    winpty docker compose -f %COMPOSE% run smith
+    echo Entering the container in interactive mode type, exit to get back
+    winpty docker compose -f %COMPOSE% exec smith bash
 ) else if "%1" == "when" (
     echo ID              Creation date                   Status
     docker container ls --format '{{.ID}}\t{{.CreatedAt}}\t{{.State}}\t{{.Status}}'
