@@ -30,7 +30,7 @@ if "%1" == "" (
     docker compose -f %COMPOSE% ps
 ) else if "%1" == "ssh" (
     echo Entering the container in interactive mode type, exit to get back
-    docker compose -f %COMPOSE% exec smith bash
+    docker compose -f %COMPOSE% run --rm -it smith
 ) else if "%1" == "when" (
     echo ID              Creation date                   Status
     docker container ls --format '{{.ID}}\t{{.CreatedAt}}\t{{.State}}\t{{.Status}}'
