@@ -4,21 +4,29 @@ services:
   smith:
     restart: unless-stopped
     image: "ghcr.io/silnrsi/smith:latest"
+    # uncomment the following 2 lines if you'd like to build a local image from the smith repository
     #build:
     #  context: $HOME/repos/smith/
     stdin_open: true
     tty: true
     volumes:
       # adjust to your own local font project folder structure
-      # source on your host OS : target inside the container
       # (syntax details on https://docs.docker.com/compose/compose-file/#volumes)
       - type: bind
         source: $HOME/repos/wstechfonts
         target: /smith
     container_name: smith
     hostname: smith-focal
+    # GPU acceleration only works on Windows11 and Ubuntu, comment it out for macOS
+    runtime: nvidia
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
     deploy:
       resources:
-        limits:
+        reservations:
           cpus: '8'
           memory: 12gb
+          devices:
+            - driver: nvidia
+              capabilities: [gpu]
+
