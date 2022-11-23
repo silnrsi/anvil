@@ -17,7 +17,8 @@ services:
         target: /smith
     container_name: smith
     hostname: smith-focal
-    # GPU acceleration only works on Windows11 and Ubuntu, comment it out for macOS
+    platform: linux/amd64
+    # GPU acceleration currently only works on Windows10/11 and Ubuntu, so for macOS comment out lines starting with runtime: environment: devices: driver: and capabilities:
     runtime: nvidia
     environment:
       - NVIDIA_VISIBLE_DEVICES=all
