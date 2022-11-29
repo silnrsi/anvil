@@ -5,7 +5,6 @@
 # maintained by Nicolas Spalinger
 
 
-OS=$(uname -sm)
 COMPOSE="$HOME/repos/anvil/docker-compose.yml"
 
 
@@ -14,9 +13,15 @@ case $1 in
                 echo "Validating configuration"
                 docker compose -f "$COMPOSE" config
                 ;;
+        "debug" | "logs")
+                echo "Launching build without parallel mode, without cache and with logs (needs build: in the docker compose file)"
+                docker compose -f "$COMPOSE" -p smith build --no-cache --progress=plain 2>&1 | tee build.log
+                ;;
+
         "up" | "start")
                 echo "Getting image, spinning up the container and provisionning"
-                docker compose -f "$COMPOSE" -p smith build --pull
+                docker compose -f "$COMPOSE" -p smith pull
+                docker compose -f "$COMPOSE" -p smith build
                 docker compose -f "$COMPOSE" up -d --remove-orphans 
                 ;;
         "provision")
@@ -36,19 +41,17 @@ case $1 in
                 ;;
         "down" | "halt" | "destroy" | "stop")
                 echo "Stopping and removing the container"
-                docker compose -f "$COMPOSE" down
+                docker compose -f "$COMPOSE" down --rmi all
                 ;;
         "clean" | "prune" | "purge")
-                echo "Purging stale images / containers and the whole build cache"
-                docker stop "$(docker ps -aq)"
-                docker rm "$(docker ps -aq)"
-                docker rmi -f smith
+                echo "Purging stale images / containers, unused volumes and the whole build cache"
+                docker stop smith
+                docker rm smith
+                docker rmi -f smith smith-smith anvil-smith
+                docker volume prune
                 docker system prune -a
                 ;;
         *)
-                if [[ "$OS" == *"MSYS_NT-10"* ]];
-                    then echo "Windows users: see equivalent batch file"
-                fi
                 echo "Anvil: 🦾 🏗  helper for running a dockerized smith"
                 echo "Config file: $COMPOSE"
                 echo "Usage: expected a parameter (alias) like:"
