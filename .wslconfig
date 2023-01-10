@@ -4,7 +4,7 @@
 # Limits VM memory, can be set as whole numbers using GB or MB
 memory=16GB 
 
-# Sets the VM to use two virtual processors
+# Set the amount of virtual processors
 processors=8
 
 # Specify a custom Linux kernel to use with your installed distros. The default kernel used can be found at https://github.com/microsoft/WSL2-Linux-Kernel
