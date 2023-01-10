@@ -1,3 +1,5 @@
+# All the config details are on https://learn.microsoft.com/en-us/windows/wsl/wsl-config
+
 # Settings apply across all Linux distros running on WSL 2
 [wsl2]
 
@@ -13,7 +15,7 @@ processors=8
 # Sets additional kernel parameters, in this case enabling older Linux base images such as Centos 6
 kernelCommandLine = vsyscall=emulate
 
-# Sets amount of swap storage space to 8GB, default is 25% of available RAM
+# Sets amount of swap storage space, default is 25% of available RAM
 swap=4GB
 
 # Sets swapfile path location, default is %USERPROFILE%\AppData\Local\Temp\swap.vhdx
