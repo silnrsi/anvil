@@ -4,7 +4,7 @@ services:
   smith:
     restart: unless-stopped
     image: "ghcr.io/silnrsi/smith:latest"
-    # uncomment the following 2 lines if you'd like to build a local image from the smith repository (and comment out the image: line above)
+    # Uncomment the following 2 lines if you'd like to build a local image from the smith repository (and comment out the image: line above)
     #build:
     #  context: $HOME/repos/smith/
     stdin_open: true
@@ -23,13 +23,14 @@ services:
         reservations:
           cpus: '8'
           memory: 12gb
-          # the lines below (under devices:) only work on Ubuntu and Windows10/11 when you have an nVidia GPU and you have installed the latest nVidia driver
-          # comment out or remove these 3 lines for macOS
-          devices:
-            - driver: nvidia
-              capabilities: [gpu]
+          # the following lines only work on Windows10/11 and Ubuntu when you have an nVidia GPU with the latest nVidia driver installed
+          # uncomment these 3 lines for GPU acceleration but only for Windows10/11 and Ubuntu, macOS already does its own GPU acceleration.
+        # devices:
+        #    - driver: nvidia
+        #      capabilities: [gpu]
 
-        # for AMD GPUs
+        # uncomment the following lines for GPU acceleration with Intel and AMD Radeon but only for Windows10/11 and Ubuntu with the corresponding drivers installed, macOS already does its own GPU acceleration.
+        # this is still experimental and not always guaranteed to work 
         # devices:
         #   - "dev/kfd:/dev/kfd"
         #   - "dev/dri:/dev/dri"
