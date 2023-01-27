@@ -33,15 +33,20 @@ case $1 in
                 ;;
         "ssh" | "enter" | "exec" | "run")
                 echo "Entering the container in interactive mode (type exit to get back)"
-                docker compose -f "$COMPOSE" run --rm -it smith
+                docker compose -f "$COMPOSE" run -it smith bash -l
+                ;;
+        "ssh-dev")
+                echo "Entering the container in interactive mode, with persistence for local development (type exit to get back)"
+                docker compose -f "$COMPOSE" create smith
+                docker compose -f "$COMPOSE" exec -it -u builder smith bash -l
                 ;;
         "when" | "time")
                 echo "ID              Creation date                   Status"
                 docker container ls --format '{{.ID}}\t{{.CreatedAt}}\t{{.State}}\t{{.Status}}'
                 ;;
         "down" | "halt" | "destroy" | "stop")
-                echo "Stopping and removing the container"
-                docker compose -f "$COMPOSE" down --rmi all
+                echo "Stopping and removing the container(s)"
+                docker compose -f "$COMPOSE" down --remove-orphans
                 ;;
         "clean" | "prune" | "purge")
                 echo "Purging stale images / containers, unused volumes and the whole build cache"
