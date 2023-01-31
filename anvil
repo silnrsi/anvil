@@ -12,6 +12,19 @@ case $1 in
         "validate" | "check" | "config")
                 echo "Validating configuration"
                 docker compose -f "$COMPOSE" config
+                echo ""
+                echo "Checking if anvil and its config file are current:"
+                iscurrentscript=$(diff ~/bin/anvil ~/repos/anvil/anvil)
+                if [ -z "$iscurrentscript" ];
+                then
+                    echo "Your anvil script is current (same as the one in the repository)"
+                else
+                    echo "Your anvil file is not current, please update your anvil repository and copy anvil to ~/bin"
+                fi
+                configchanges=$(cd ~/repos/anvil/ && git diff -U0 --color docker-compose.yml)
+                echo ""
+                echo "The differences between your docker-compose.yml and the reference in the anvil repository:"
+                echo "$configchanges"
                 ;;
         "debug" | "logs")
                 echo "Launching build without parallel mode, without cache and with logs (needs build: in the docker compose file)"
