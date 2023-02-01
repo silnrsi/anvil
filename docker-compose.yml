@@ -9,6 +9,7 @@ services:
     #  context: $HOME/repos/smith/
     stdin_open: true
     tty: true
+    init: true
     volumes:
       # adjust to your own local font project folder structure
       # (syntax details on https://docs.docker.com/compose/compose-file/#volumes)
