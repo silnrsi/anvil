@@ -46,7 +46,7 @@ case $1 in
                 ;;
         "ssh" | "enter" | "exec" | "run")
                 echo "Entering the container in interactive mode (type exit to get back)"
-                docker compose -f "$COMPOSE" run -it smith bash -l
+                docker compose -f "$COMPOSE" run -it --rm smith bash -l
                 ;;
         "ssh-dev")
                 echo "Entering the container in interactive mode, with persistence for local development (type exit to get back)"
