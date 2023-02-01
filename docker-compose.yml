@@ -16,6 +16,9 @@ services:
       - type: bind
         source: $HOME/repos/wstechfonts
         target: /smith
+      # the volume mounting below is to sync the timezone with the host
+      - "/etc/timezone:/etc/timezone:ro"
+      - "/etc/localtime:/etc/localtime:ro"
     container_name: smith
     hostname: smith-focal
     platform: linux/amd64
