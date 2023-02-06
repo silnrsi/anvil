@@ -77,5 +77,7 @@ case $1 in
                 echo "  anvil ssh (enter) (exec) (run)"
                 echo "  anvil status (ps)"
                 echo "  anvil down (halt) (destroy) (stop)"
+                echo "  anvil when (time)"
+                echo "  anvil config (validate) (check)"
                 ;;
 esac
