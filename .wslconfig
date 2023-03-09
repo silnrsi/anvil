@@ -4,7 +4,7 @@
 [wsl2]
 
 # Limits VM memory, can be set as whole numbers using GB or MB
-memory=16GB 
+memory=10GB 
 
 # Set the amount of virtual processors
 processors=8
