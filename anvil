@@ -48,7 +48,7 @@ case $1 in
                 echo "Entering the container in interactive mode (type exit to get back)"
                 docker compose -f "$COMPOSE" run -it --rm smith bash -l
                 ;;
-        "ssh-dev")
+        "ssh-dev" | "enter-dev" | "exec-dev" | "run-dev")
                 echo "Entering the container in interactive mode, with persistence for local development (type exit to get back)"
                 docker compose -f "$COMPOSE" create smith
                 docker compose -f "$COMPOSE" exec -it -u builder smith bash -l
@@ -69,15 +69,19 @@ case $1 in
                 docker volume prune
                 docker system prune -a
                 ;;
-        *)
+        "--help" | "help" | "--usage" | "usage" | *)
                 echo "Anvil: 🦾 🏗  helper for running a dockerized smith"
                 echo "Config file: $COMPOSE"
-                echo "Usage: expected a parameter (alias) like:"
-                echo "  anvil up (start)"
-                echo "  anvil ssh (enter) (exec) (run)"
-                echo "  anvil status (ps)"
-                echo "  anvil down (halt) (destroy) (stop)"
-                echo "  anvil when (time)"
-                echo "  anvil config (validate) (check)"
+                echo "Usage: anvil <target> (alias) - description:"
+                echo "  anvil up (start) - get the image, spin up a container"
+                echo "  anvil ssh (enter) (exec) (run) - log in to the container"
+                echo "  anvil status (ps) - show the status of the container"
+                echo "  anvil down (halt) (destroy) (stop) - stop and remove the container"
+                echo "  anvil when (time) - check since when the container has been created and has been running"
+                echo "  anvil config (validate) (check) - validate the configuration file and compare against reference files from the repository"
+                echo "  Advanced targets: "
+                echo "  anvil clean (prune) (purge) - fully clean out the cache"
+                echo "  anvil ssh-dev (enter-dev) (exec-dev) (run-dev) - spin up a persistent container which needs anvil up beforehand"
+                echo "  anvil debug (logs) - debug and generate more logs with when building a local image with build: instead of image: in docker-compose.yml"
                 ;;
 esac
