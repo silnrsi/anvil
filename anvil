@@ -70,7 +70,7 @@ case $1 in
                 docker system prune -a
                 ;;
         "--help" | "help" | "--usage" | "usage" | *)
-                echo "Anvil: 🦾 🏗  helper for running a dockerized smith"
+                echo "Anvil: 🏗️  🐳  helper for running a dockerized smith"
                 echo "Config file: $COMPOSE"
                 echo "Usage: anvil <target> (alias) - description:"
                 echo "  anvil up (start) - get the image, spin up a container"
