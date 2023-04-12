@@ -5,13 +5,13 @@
 [wsl2]
 
 # Limits VM memory, can be set as whole numbers using GB or MB
-memory=10GB 
+memory=8GB
 
 # Set the amount of virtual processors
 processors=8
 
 # Sets amount of swap storage space, recommended default is about 25% of available RAM
-swap=4GB
+swap=2GB
 
 # Sets swapfile path location, default is %USERPROFILE%\AppData\Local\Temp\swap.vhdx
 swapfile=C:\\temp\\wsl-swap.vhdx
@@ -19,7 +19,7 @@ swapfile=C:\\temp\\wsl-swap.vhdx
 # Disable page reporting so WSL retains all allocated memory claimed from Windows and releases none back when free
 pageReporting=true
 
-# Turn off default connection to bind WSL 2 localhost to Windows localhost
+# Default connection to bind WSL 2 localhost to Windows localhost
 localhostforwarding=true
 
 # Disables nested virtualization
