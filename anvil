@@ -48,6 +48,11 @@ case $1 in
                 echo "Entering the container in interactive mode (type exit to get back)"
                 docker compose -f "$COMPOSE" run -it --rm smith bash -l
                 ;;
+        "up-dev" | "start-dev")
+                echo "Spinning up the container from existing local image without pulling new one"
+                docker compose -f "$COMPOSE" -p smith build
+                docker compose -f "$COMPOSE" up -d
+                ;;
         "ssh-dev" | "enter-dev" | "exec-dev" | "run-dev")
                 echo "Entering the container in interactive mode, with persistence for local development (type exit to get back)"
                 docker compose -f "$COMPOSE" create smith
@@ -81,6 +86,7 @@ case $1 in
                 echo "  anvil config (validate) (check) - validate the configuration file and compare against reference files from the repository"
                 echo "  Advanced targets: "
                 echo "  anvil clean (prune) (purge) - fully clean out the cache"
+                echo "  anvil up-dev (start-dev) - spin up a container using a cached image without pulling a new one"
                 echo "  anvil ssh-dev (enter-dev) (exec-dev) (run-dev) - spin up a persistent container which needs anvil up beforehand"
                 echo "  anvil debug (logs) - debug and generate more logs with when building a local image with build: instead of image: in docker-compose.yml"
                 ;;

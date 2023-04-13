@@ -1,5 +1,4 @@
-
-## anvil 
+## anvil completion script
 _anvil()
 {
     local cur prev 
@@ -8,7 +7,7 @@ _anvil()
     cur=${COMP_WORDS[COMP_CWORD]}
     prev=${COMP_WORDS[COMP_CWORD-1]}
 
-        COMPREPLY=($( compgen -W 'validate check config up start provision status ps ssh enter exec run ssh-dev when time stop halt destroy down clean prune purge' -- $cur ) )
+        COMPREPLY=($( compgen -W 'validate check config up up-dev start start-dev provision status ps ssh enter exec run ssh-dev enter-dev exec-dev run-dev when time stop halt destroy down clean prune purge help usage' -- $cur ) )
 }
 complete -F _anvil $default anvil
 
