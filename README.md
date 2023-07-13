@@ -31,4 +31,7 @@ There is also a bash completion script:
 cat bash_completion_anvil >> ~/.bash_completion
 ```
 
+There are also example config files for [WSL](https://learn.microsoft.com/en-us/windows/wsl/) users. 
+
+
 Enjoy!
