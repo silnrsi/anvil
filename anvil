@@ -28,7 +28,7 @@ case $1 in
                 ;;
         "debug" | "logs")
                 echo "Launching build without parallel mode, without cache and with logs (needs build: in the docker compose file)"
-                docker compose -f "$COMPOSE" -p smith build --no-cache --progress=plain 2>&1 | tee build.log
+                docker compose -f "$COMPOSE" -p smith --progress=plain build --no-cache 2>&1 | tee build.log
                 ;;
 
         "up" | "start")
