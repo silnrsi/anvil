@@ -10,6 +10,11 @@ services:
     stdin_open: true
     tty: true
     init: true
+    ulimits:
+      nproc: 65535
+      nofile:
+        soft: 30000
+        hard: 60000
     volumes:
       # adjust to your own local font project folder structure
       # (syntax details on https://docs.docker.com/compose/compose-file/#volumes)
@@ -20,7 +25,6 @@ services:
       - "/etc/timezone:/etc/timezone:ro"
       - "/etc/localtime:/etc/localtime:ro"
     container_name: smith
-    hostname: smith-jammy
     platform: linux/amd64
     deploy:
       resources:
