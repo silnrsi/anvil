@@ -25,6 +25,7 @@ services:
       - "/etc/timezone:/etc/timezone:ro"
       - "/etc/localtime:/etc/localtime:ro"
     container_name: smith
+    hostname: smith
     platform: linux/amd64
     deploy:
       resources:
