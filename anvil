@@ -1,6 +1,6 @@
 #!/bin/bash
 # A simple script to run smith in a dockerized environment (and to ease the transition from Vagrant)
-# Copyright (c) 2022 SIL International (http://www.sil.org)'
+# Copyright (c) 2022-2024 SIL International (http://www.sil.org)'
 # Released under the MIT License (http://en.wikipedia.org/wiki/MIT_License)
 # maintained by Nicolas Spalinger
 
@@ -71,8 +71,8 @@ case $1 in
                 docker stop smith
                 docker rm smith
                 docker rmi -f smith smith-smith anvil-smith
-                docker volume prune
-                docker system prune -a
+                docker image prune --filter label=org.opencontainers.image.title="smith"
+                docker system prune --filter label=org.opencontainers.image.title="smith"
                 ;;
         "--help" | "help" | "--usage" | "usage" | *)
                 echo "Anvil: 🏗️  🐳  helper for running a dockerized smith"
