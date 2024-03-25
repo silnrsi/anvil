@@ -22,6 +22,13 @@ nestedVirtualization=false
 # output console showing contents of dmesg when opening a WSL 2 distro for debugging (Win11 only)
 debugConsole=false
 
-# Turn off GUI support (too much memory)
+# Turn off GUI support to reduce memory usage
 guiApplications=false
+
+
+[experimental]
+# more agressively reclaim memory
+autoMemoryReclaim=dropcache
+
+
 
