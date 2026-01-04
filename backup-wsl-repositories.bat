@@ -20,7 +20,7 @@ set LOGFILE=%USERPROFILE%\WSL-repositories-backup-log-%Mon%-%Day%-%Yr%-%Hr%-%Min
 echo Creating a backup of repositories in WSL to %BACKUPDIR%  (repos\wstechfonts)
 echo Assuming your Ubuntu VM in WSL is mapped as the W: network drive and your WSL-UBUNTU-USER is properly set
 
-robocopy W:\home\%WSL-UBUNTU-USER%\repos\wstechfonts  %BACKUPDIR%  /MIR /FFT /Z /ETA /LOG:%LOGFILE%
+robocopy W:\home\%WSL-UBUNTU-USER%\repos\wstechfonts  %BACKUPDIR%  /MIR /FFT /Z /ETA /XJ /LOG:%LOGFILE%
 
 echo:
 echo:
