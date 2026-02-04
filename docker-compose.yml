@@ -20,6 +20,9 @@ services:
       - type: bind
         source: $HOME/repos/wstechfonts
         target: /smith
+      - type: bind
+        source: $HOME/repos/smith
+        target: /smithsrc
       # the volume mounting below is to sync the timezone with the host
       - "/etc/timezone:/etc/timezone:ro"
       - "/etc/localtime:/etc/localtime:ro"
@@ -33,9 +36,11 @@ services:
           memory: 8gb
           # the following lines only work on Windows10/11 and Ubuntu when you have an nVidia GPU with the latest nVidia driver installed
           # uncomment these 3 lines for GPU acceleration but only for Windows10/11 and Ubuntu, macOS already does its own GPU acceleration.
-        # devices:
-        #    - driver: nvidia
-        #      capabilities: [gpu]
+          # details on https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
 
         # uncomment the following lines for GPU acceleration with Intel and AMD Radeon but only for Windows10/11 and Ubuntu with the corresponding drivers installed, macOS already does its own GPU acceleration.
         # this is still experimental and not always guaranteed to work 
